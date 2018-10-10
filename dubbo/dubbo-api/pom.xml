@@ -2,15 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>dubbo</artifactId>
+        <groupId>com.mall</groupId>
+        <version>1.1.0-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>dubbo-api</artifactId>
+    <packaging>jar</packaging>
 
-    <groupId>com.mall</groupId>
-    <artifactId>mall</artifactId>
-    <packaging>pom</packaging>
-    <version>1.1.0-SNAPSHOT</version>
-    <modules>
-        <module>shopMall</module>
-        <module>dubbo</module>
-        <module>mall-dependency-bom</module>
-    </modules>
+    <properties>
+        <skip_maven_deploy>true</skip_maven_deploy>
+    </properties>
 </project>
