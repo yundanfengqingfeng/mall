@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
     <dubbo:application name="dubbo-provider" />
     <!--注册中心配置，用于配置连接注册中心相关信息。-->
-    <dubbo:registry address="zookeeper://172.16.93.29:2181" />
+    <dubbo:registry address="zookeeper://127.0.0.1:2181" />
     <!--协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受。-->
     <dubbo:protocol name="dubbo" port="2080" />
+    <!-- 和本地服务一样实现远程服务 -->
+    <bean id="demoService" class="com.mall.dubbo.provider.DemoServiceImpl"/>
     <!--服务配置，用于暴露一个服务，定义服务的元信息，一个服务可以用多个协议暴露，一个服务也可以注册到多个注册中心。-->
     <dubbo:service interface="com.mall.dubbo.api.DemoService" ref="demoService" />
 

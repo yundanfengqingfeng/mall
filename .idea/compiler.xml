@@ -7,9 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="com.shopMall" />
-        <module name="dubboapi" />
-        <module name="dubboconsumer" />
-        <module name="dubboprovider" />
+        <module name="dubbo-api" />
+        <module name="dubbo-consumer" />
+        <module name="dubbo-provider" />
       </profile>
     </annotationProcessing>
   </component>
