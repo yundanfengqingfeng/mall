@@ -10,4 +10,5 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181" />
     <dubbo:reference interface="com.mall.dubbo.api.DemoService" id="demoService" check="false"/>
 
+
 </beans>

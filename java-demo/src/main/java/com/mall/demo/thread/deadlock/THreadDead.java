@@ -1,4 +1,4 @@
-package com.mall.demo.thread;
+package com.mall.demo.thread.deadlock;
 
 /**
  * @author pc-fengc

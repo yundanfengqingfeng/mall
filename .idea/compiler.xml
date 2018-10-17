@@ -10,6 +10,10 @@
         <module name="dubbo-api" />
         <module name="dubbo-consumer" />
         <module name="dubbo-provider" />
+        <module name="dubboapi" />
+        <module name="dubboconsumer" />
+        <module name="dubboprovider" />
+        <module name="javademo" />
       </profile>
     </annotationProcessing>
   </component>

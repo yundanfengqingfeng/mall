@@ -12,5 +12,7 @@
         <module>shopMall</module>
         <module>dubbo</module>
         <module>mall-dependency-bom</module>
+        <module>java.demo</module>
+        <module>java-demo</module>
     </modules>
 </project>

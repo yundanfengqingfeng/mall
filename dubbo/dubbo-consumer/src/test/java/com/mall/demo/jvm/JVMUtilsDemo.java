@@ -5,4 +5,11 @@ package com.mall.demo.jvm;
  * created by pc-fengc on 2018-10-15 16:52.
  */
 public class JVMUtilsDemo {
+
+    
+    public static void main(String[] args) {
+
+
+    }
+
 }
