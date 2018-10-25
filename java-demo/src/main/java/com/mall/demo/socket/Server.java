@@ -1,8 +1,5 @@
 package com.mall.demo.socket;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,21 +9,26 @@ import java.net.Socket;
  */
 public class Server {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException{
 
-        ServerSocket socket = new ServerSocket(8080);
-
-        System.out.println("SocketServer 服务端启动.............");
+        ServerSocket server = new ServerSocket(8080);
+        System.out.println("向本机注册服务端口.......,详细信息是：" + server.toString());
         while (true) {
-            System.out.println("等待客户连接..................");
-            Socket clinet = socket.accept();
-            //可防止在发送的时候黏包
-            clinet.setTcpNoDelay(true);
-            BufferedReader br = new BufferedReader(new InputStreamReader(clinet.getInputStream()));
-            System.out.println("客户连接成功.....,详细信息是：" + clinet.toString());
+            Socket client = server.accept();
+            System.out.println("客户端连接过来了，详细信息是：" + client.toString());
+            InputStream in = client.getInputStream();
+            StringBuilder sb = new StringBuilder();
+            byte[] bytes = new byte[1024];
+            int len = 0;
+            while ((len = in.read(bytes)) != -1) {
+                sb.append(new String(bytes,0,len,"utf-8"));
+            }
+            System.out.println(client.getInetAddress() + " 说:" + sb.toString());
+            Writer wr = new PrintWriter(client.getOutputStream());
+            wr.write("客户端你过来了？嘿嘿......");
+            wr.flush();
+            wr.close();
         }
-
-
     }
 
 }
