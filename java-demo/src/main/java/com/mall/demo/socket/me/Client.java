@@ -1,4 +1,4 @@
-package com.mall.demo.socket;
+package com.mall.demo.socket.me;
 
 import java.io.*;
 import java.net.Socket;
