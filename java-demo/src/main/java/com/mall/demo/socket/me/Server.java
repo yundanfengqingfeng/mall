@@ -2,6 +2,7 @@ package com.mall.demo.socket.me;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 /**
  * @author 超
@@ -11,24 +12,32 @@ public class Server {
 
     public static void main(String[] args) throws IOException{
 
-        ServerSocket server = new ServerSocket(8080);
-        System.out.println("向本机注册服务端口.......,详细信息是：" + server.toString());
+        ServerSocket server = new ServerSocket(8081);
+        System.out.println("服务器监听开始了.......");
         while (true) {
             Socket client = server.accept();
-            System.out.println("客户端连接过来了，详细信息是：" + client.toString());
-            InputStream in = client.getInputStream();
-            StringBuilder sb = new StringBuilder();
-            byte[] bytes = new byte[1024];
-            int len = 0;
-            while ((len = in.read(bytes)) != -1) {
-                sb.append(new String(bytes,0,len,"utf-8"));
-            }
-            System.out.println(client.getInetAddress() + " 说:" + sb.toString());
-            Writer wr = new PrintWriter(client.getOutputStream());
-            wr.write("客户端你过来了？嘿嘿......");
-            wr.flush();
-            wr.close();
+            System.out.println("客户端已经连接上来了.......");
+            new Thread(){
+                @Override
+                public void run () {
+                    while (true) {
+                        try {
+                            BufferedReader br = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                            String message = br.readLine();
+                            System.out.println(message);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            break;
+                        }
+                    }
+                }
+            }.start();
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            PrintWriter pw = new PrintWriter(client.getOutputStream(),true);
+            pw.write(line);
         }
+
     }
 
 }
