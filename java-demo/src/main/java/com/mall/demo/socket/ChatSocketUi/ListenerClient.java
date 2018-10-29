@@ -49,12 +49,11 @@ public class ListenerClient extends Thread {
     public synchronized void sendMsg(String msg) {
         System.out.println("..............................................");
         try {
-            for (int i = 0; i < ui.clients.size(); i++) {
-                Socket client = ui.clients.get(i);
+            for (int i = 0; i < ServerUI.clients.size(); i++) {
+                Socket client = ServerUI.clients.get(i);
                 writer = new PrintWriter(client.getOutputStream(), true);
                 writer.println(msg);
             }
-
         } catch (Exception e) {
             println(e.toString());
         }

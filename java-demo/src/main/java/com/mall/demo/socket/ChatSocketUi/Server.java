@@ -27,12 +27,12 @@ public class Server extends Thread {
     public void run() {
         try {
             ss = new ServerSocket(8081);
-            ui.clients=new ArrayList<>();
+            ServerUI.clients=new ArrayList<>();
             println("启动服务器成功：端口8081");
             while (true) {
                 println("等待客户端链接.......................................");
                 Socket client = ss.accept();
-                ui.clients.add(client);
+                ServerUI.clients.add(client);
                 println("连接成功，客户端请求服务端的详细信息：" + client.toString());
                 new ListenerClient(ui, client);
             }
@@ -45,8 +45,8 @@ public class Server extends Thread {
 
     public synchronized void sendMsg(String msg) {
         try {
-            for (int i = 0; i < ui.clients.size(); i++) {
-                Socket client = ui.clients.get(i);
+            for (int i = 0; i < ServerUI.clients.size(); i++) {
+                Socket client = ServerUI.clients.get(i);
                 writer = new PrintWriter(client.getOutputStream(), true);
                 System.out.println("writer :" + writer);
                 writer.println(msg);

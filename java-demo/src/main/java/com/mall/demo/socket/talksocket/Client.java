@@ -2,7 +2,9 @@ package com.mall.demo.socket.talksocket;
 
 import com.mall.demo.socket.twowaysocket.LogUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
@@ -17,25 +19,27 @@ public class Client {
     public static final int PORT = 8081;
     public static final String END = "end";
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
-        Socket server = new Socket(IP,PORT);
-        LogUtils.println("客户端连接上服务端了......");
-        PrintWriter writer = new PrintWriter(server.getOutputStream()) ;
+        Socket socket ;
+        BufferedReader reader;
+        PrintWriter writer;
+        Scanner scanner;
 
-        Scanner sc = new Scanner(System.in);
-        String message = sc.nextLine();
-        if (!END.equals(message)) {
-            writer.println(message);
-            writer.flush();
-            LogUtils.println("向服务器输入 ：" + message);
-            message = sc.nextLine();
-            LogUtils.println("下一行是 ：" + message);
+        try {
+            socket = new Socket(IP,PORT);
+            scanner = new Scanner(System.in);
+            reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            System.out.println(reader.readLine());
+            writer = new PrintWriter(socket.getOutputStream(),true);
+            while (true) {
+                String message = scanner.nextLine();
+                writer.println(message);
+                System.out.println(message);
+            }
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
-        sc.close();
-        writer.close();
-        server.close();
-
     }
 
 }

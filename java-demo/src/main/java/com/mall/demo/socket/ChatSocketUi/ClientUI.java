@@ -43,12 +43,14 @@ public class ClientUI extends JFrame {
         taShow = new JTextArea();
         //启动链接按钮事件
         btStart.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 server = new Client(ClientUI.this);
             }
         });
         //发送按钮事件
         btSend.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
                 String name = tfName.getText();
                 if (name == null || "".equals(name)) {
@@ -60,19 +62,24 @@ public class ClientUI extends JFrame {
         });
 
         this.addWindowListener(new WindowAdapter() {
+            @Override
             public void windowClosing(WindowEvent e) {
                 int a = JOptionPane.showConfirmDialog(null, "确定关闭吗？", "温馨提示",
                         JOptionPane.YES_NO_OPTION);
                 if (a == 1) {
-                    System.exit(0); // 关闭
+                    // 关闭
+                    System.exit(0);
                 }
             }
         });
         //底部的发送信息框与链接按钮
         JPanel top = new JPanel(new FlowLayout());
-        top.add(tfSend); //发送文本
-        top.add(btSend); //发送按钮
-        this.add(top, BorderLayout.SOUTH); //加载到底部
+        //发送文本
+        top.add(tfSend);
+        //发送按钮
+        top.add(btSend);
+        //加载到底部
+        this.add(top, BorderLayout.SOUTH);
 
         //头部放连接服务的
         JPanel northJpannel = new JPanel(new FlowLayout());
@@ -83,7 +90,8 @@ public class ClientUI extends JFrame {
         northJpannel.add(portText);
         northJpannel.add(tfPort);
         northJpannel.add(btStart);
-        this.add(northJpannel,BorderLayout.NORTH);  //加载到头部
+        //加载到头部
+        this.add(northJpannel,BorderLayout.NORTH);
 
         final JScrollPane sp = new JScrollPane();
         sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
