@@ -1,5 +1,7 @@
 package com.mall.demo.jvm;
 
+import java.io.IOException;
+
 /**
  * @author 超
  * Create by fengc on  2018/10/30 21:23
@@ -22,6 +24,14 @@ public class StackOverDemo {
      */
     public void funcAdd(int c) {
         System.out.println(c++);
+        /*if (c == 1980) {
+            try {
+                System.in.read();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }*/
         funcAdd(c);
     }
 
