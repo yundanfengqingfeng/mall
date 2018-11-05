@@ -11,6 +11,7 @@
         <module name="dubbo-consumer" />
         <module name="dubbo-provider" />
         <module name="java-demo" />
+        <module name="springmybatis" />
       </profile>
     </annotationProcessing>
   </component>

@@ -14,5 +14,6 @@
         <module>mall-dependency-bom</module>
         <module>java.demo</module>
         <module>java-demo</module>
+        <module>spring-mybatis</module>
     </modules>
 </project>
