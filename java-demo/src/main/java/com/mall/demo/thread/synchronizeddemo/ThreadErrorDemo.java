@@ -10,14 +10,14 @@ public class ThreadErrorDemo {
 
     public static void main(String[] args) {
 
-       /* CountMath countMath = new CountMath();
+        CountMath countMath = new CountMath();
         CountDownLatch countDownLatch = new CountDownLatch(1);
 
         for (int i = 0 ; i < 50 ; i ++) {
             new AddThread(countMath,countDownLatch).start();
         }
         System.out.println("开始执行线程............");
-        countDownLatch.countDown();*/
+        countDownLatch.countDown();
 
         Integer a = 1;
         Integer b = 2;
