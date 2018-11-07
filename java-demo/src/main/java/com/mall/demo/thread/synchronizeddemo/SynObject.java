@@ -12,7 +12,7 @@ public class SynObject {
     public synchronized void add() {
         i++;
         try{
-            Thread.sleep(500);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
