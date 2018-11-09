@@ -2,7 +2,9 @@ package com.mall.demo.designpatterns.proxy.dynamic;
 
 import com.mall.demo.designpatterns.proxy.Person;
 import com.mall.demo.designpatterns.proxy.Student;
+import sun.misc.ProxyGenerator;
 
+import java.io.FileOutputStream;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
@@ -24,6 +26,16 @@ public class ProxyTest {
         System.out.println(stu.getClass().getInterfaces());
         Person stuProxy = (Person)Proxy.newProxyInstance(Person.class.getClassLoader(),stu.getClass().getInterfaces(),stuHandler);
         stuProxy.giveMoney();
+
+        byte[] classFile = ProxyGenerator.generateProxyClass("$Proxy0", Student.class.getInterfaces());
+        String path = "D:\\IdeaProjects\\mall\\java-demo\\src\\test\\java\\StuProxy.class";
+        try(FileOutputStream fos = new FileOutputStream(path)) {
+            fos.write(classFile);
+            fos.flush();
+            System.out.println("代理类class文件写入成功");
+        } catch (Exception e) {
+            System.out.println("写文件错误");
+        }
     }
 
 }
