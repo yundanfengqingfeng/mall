@@ -15,14 +15,12 @@
         <module name="dubboprovider" />
         <module name="java-demo" />
         <module name="javademo" />
+        <module name="mall-admin" />
         <module name="mall-admin-soringboot" />
         <module name="mall-admin-springboot" />
         <module name="spring-mybatis" />
         <module name="springmybatis" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="mall-admin" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>
