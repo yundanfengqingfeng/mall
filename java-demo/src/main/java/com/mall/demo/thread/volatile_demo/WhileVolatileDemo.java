@@ -3,33 +3,22 @@ package com.mall.demo.thread.volatile_demo;
 /**
  * @author 超
  * Create by fengc on  2018/11/21 22:47
+ * 测试 volatile 可见性
  */
-public class WhileVolatileDemo {
-
+public class WhileVolatileDemo implements Runnable {
+    volatile static boolean stop = false;
     public static void main(String[] args) {
-        Flag flag = new Flag();
         int count = 0;
-        while (!flag.stop) {
-            System.out.println("你好.......count=" + (count++));
+        new Thread(new WhileVolatileDemo()).start();
+        new Thread(new WhileVolatileDemo()).start();
+        while (!stop) {
+            System.out.println("你好.......count=" + (count++) + ",stop = " + stop);
         }
-        new FlagThread(flag).start();
     }
-}
-
-class Flag {
-    volatile boolean stop = false;
-}
-
-class FlagThread extends Thread {
-    Flag flag;
-
-    public FlagThread(Flag flag) {
-        this.flag = flag;
-    }
-
     @Override
     public void run() {
         System.out.println("进来..........................");
-        flag.stop = true;
+        stop = true;
     }
 }
+
