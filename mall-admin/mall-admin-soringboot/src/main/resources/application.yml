@@ -1,0 +1,6 @@
+server:
+  port: 8080
+
+my:
+  project: mall
+  name: admin

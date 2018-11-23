@@ -1,4 +1,4 @@
-package com.mall.admin.springboot.malladminsoringboot;
+package com.mall.admin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
