@@ -1,0 +1,29 @@
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+
+my:
+  name: demo
+  age: 12
+  nmber: ${random.int}
+  uuid: ${random.uuid}
+  max: ${random.int(10)}
+  value: ${random.value}
+  geeting: hi,i'm ${my.name}
+
+spring:
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+management:
+  endpoint:
+  server:
+    port: 9001
+  endpoints:
+    web:
+      exposure:
+        include: *
+
