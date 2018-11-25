@@ -18,12 +18,15 @@ spring:
       charset: UTF-8
       force: true
       enabled: true
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springsecurity?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
 management:
-  endpoint:
   server:
-    port: 9001
+    port: 9091
   endpoints:
     web:
-      exposure:
-        include: *
+        exposure:
+          include: ["health","info","env","metrics","beans"]
+
 
