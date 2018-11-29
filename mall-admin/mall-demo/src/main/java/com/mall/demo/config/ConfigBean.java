@@ -1,14 +1,17 @@
 package com.mall.demo.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author pc-fengc
  * created by pc-fengc on 2018-11-24 11:00.
  */
+@Configuration
 @ConfigurationProperties(prefix = "my")
-@Component
 public class ConfigBean {
 
     private String name;
@@ -30,6 +33,15 @@ public class ConfigBean {
                 ", value='" + value + '\'' +
                 ", greeting='" + geeting + '\'' +
                 '}';
+    }
+
+    public ConfigBean() {
+        System.out.println("构造器初始化开始.........ConfigBean...............");
+    }
+
+    @PostConstruct
+    public void init() {
+        System.out.println("初始化开始.........ConfigBean...............");
     }
 
     public String getName() {

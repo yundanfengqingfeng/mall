@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @RestController 是@Controller 与 @ResponseBody的结合
  */
 @RestController
-@EnableConfigurationProperties({ConfigBean.class,ApplicationConfig.class})
+//@EnableConfigurationProperties({ConfigBean.class,ApplicationConfig.class})
 public class MiyaController {
 
     @Autowired

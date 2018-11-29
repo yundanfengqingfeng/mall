@@ -4,6 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
+import javax.annotation.PostConstruct;
+
 /**
  * @author pc-fengc
  * created by pc-fengc on 2018-11-24 11:20.
@@ -17,6 +19,15 @@ public class ApplicationConfig {
     private String name;
     private int age;
     private String project;
+
+    public ApplicationConfig() {
+        System.out.println("构造器初始化开始.........ApplicationConfig...............");
+    }
+
+    @PostConstruct
+    public void init () {
+        System.out.println("初始化开始...PostConstruct......ApplicationConfig...............");
+    }
 
     public String getName() {
         return name;

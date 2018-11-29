@@ -1,6 +1,25 @@
+app:
+  tag: dev
+
 server:
   port: 8080
+
 
 my:
   project: mall
   name: admin
+spring:
+  application:
+    name: mall-admin-springboot01
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+   management:
+     server:
+       port: 9091
+     endpoints:
+       web:
+           exposure:
+             include: ["health","info","env","metrics","beans"]
