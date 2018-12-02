@@ -15,10 +15,10 @@
         <module name="dubboprovider" />
         <module name="java-demo" />
         <module name="javademo" />
-        <module name="mall-admin" />
         <module name="mall-admin-soringboot" />
         <module name="mall-admin-springboot" />
         <module name="mall-demo" />
+        <module name="mallspring" />
         <module name="spring-mybatis" />
         <module name="springmybatis" />
       </profile>

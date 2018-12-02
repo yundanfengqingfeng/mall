@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/mall-admin/mall-admin-soringboot" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-admin/mall-demo" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/mall-admin/mall-spring" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mall-dependency-bom" charset="UTF-8" />
   </component>
 </project>

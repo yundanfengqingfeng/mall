@@ -11,6 +11,10 @@
 
     <groupId>com.mall.admin</groupId>
     <artifactId>mall-admin</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>mall-spring</module>
+    </modules>
 
 
 </project>

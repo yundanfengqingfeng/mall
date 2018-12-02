@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--开启注解-->
+    <context:annotation-config />
+    <!--包扫描-->
+    <context:component-scan base-package="com.mall.spring" />
+
+    <bean id="userDaoS" class="com.mall.spring.dao.impl.UserDaoImpl"></bean>
+    <bean id="userDaoII" class="com.mall.spring.dao.impl.UserDaoImpl"></bean>
+    <!-- 配置service
+        <bean> 配置需要创建的对象
+            id ：用于之后从spring容器获得实例时使用的  【组件扫描的情况:默认的id号或者bean的name是类名的首字母小写。】
+            class ：需要创建实例的全限定类名
+    -->
+    <bean id="userService" class="com.mall.spring.service.impl.UserServiceImpl" >
+        <!--使用property进行对象注入
+        autowire="" 不设置，默认 byName
+
+        name :bean的属性名
+        ref : 指向具体的实现对象引用
+        -->
+        <property name="userDao" ref="userDaoII"></property>
+    </bean>
+
+    <!--基于构造器方法注入
+        <constructor-arg> 用于配置构造方法一个参数argument
+            name ：参数的名称
+            value：设置普通数据
+
+            ref：引用数据，一般是另一个bean id值
+            index ：参数的索引号，从0开始 。如果只有索引，匹配到了多个构造方法时，默认使用第一个。
+            type ：确定参数类型
+    -->
+    <bean id="user" class="com.mall.spring.bean.User">
+        <!--方式1-->
+       <!-- <constructor-arg name="age" value="11" />
+        <constructor-arg name="code" value="00001" />
+        <constructor-arg name="name" value="张三" />-->
+
+        <!--方式2-->
+        <constructor-arg index="0" type="int" value="12"></constructor-arg>
+        <constructor-arg index="1" type="java.lang.String" value="00001"></constructor-arg>
+        <constructor-arg index="2" type="java.lang.String" value="张三"></constructor-arg>
+    </bean>
+
+    <!--基于setter方法
+        * 普通数据
+            <property name="" value="值">
+            等效
+            <property name="">
+                <value>值
+            等效
+            <property p:属性=值 />
+        * 引用数据
+            <property name="" ref="另一个bean">
+            等效
+            <property name="">
+                <ref bean="另一个bean"/>
+    -->
+    <bean id="userOther" class="com.mall.spring.bean.User" p:name="李四">
+        <property name="age" value="13"></property>
+        <property name="code">
+            <value>00002</value>
+        </property>
+    </bean>
+
+    <bean id="person" class="com.mall.spring.bean.Person" p:unicode="00000001" >
+        <property name="user" ref="userOther"></property>
+        <!--数组的注入-->
+        <property name="arrData">
+            <array>
+                <value>Dene</value>
+                <value>Denr</value>
+                <value>Dent</value>
+                <value>Deny</value>
+                <value>Denu</value>
+                <value>Deno</value>
+            </array>
+        </property>
+        <!--List集合的注入-->
+        <property name="list">
+            <list>
+                <value>12</value>
+                <value>你好</value>
+                <value>是的</value>
+                <value>我不是</value>
+                <value>你就是</value>
+            </list>
+        </property>
+        <!--Set 集合的注入-->
+        <property name="set">
+            <set>
+                <value>121</value>
+                <value>你好1</value>
+                <value>是的1</value>
+                <value>我不是1</value>
+                <value>你就是1</value>
+            </set>
+        </property>
+        <!-- Map集合 -->
+        <property name="map">
+            <map>
+                <entry key="name1" value="Lucy"></entry>
+                <entry key="name2" value="Jack"></entry>
+                <entry>
+                    <key><value>name3</value></key>
+                    <value>李白</value>
+                </entry>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="timeHandler" class="com.mall.spring.config.TimeHandler"></bean>
+    <bean id="logHandler" class="com.mall.spring.config.LogHamdler"></bean>
+    <aop:config>
+        <aop:aspect id = "time" ref="timeHandler" order="1">
+            <!--切入Service的所有方法-->
+            <aop:pointcut id="timeMethod" expression="execution(* com.mall.spring.service.UserService.*(..))" />
+            <!--切入Service的以add开头的方法-->
+           <!-- <aop:pointcut id="timeMethod" expression="execution(* com.mall.spring.service.UserService.add*(..))" />-->
+            <aop:before method="printTime" pointcut-ref="timeMethod" />
+            <aop:after method="printTime" pointcut-ref="timeMethod" />
+        </aop:aspect>
+        <aop:aspect id = "log" ref="logHandler" order="2">
+            <aop:pointcut id="logMethod" expression="execution(* com.mall.spring.service.UserService.*(..))" />
+            <aop:before method="logBefore" pointcut-ref="logMethod" />
+            <aop:after method="logAfter" pointcut-ref="logMethod" />
+        </aop:aspect>
+    </aop:config>
+    <!--配置自动匹配 aspectJ 注解的 Java 类生成代理对象 -->
+    <aop:aspectj-autoproxy />
+    
+</beans>
