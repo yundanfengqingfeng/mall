@@ -8,7 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>mall-admin-soringboot</name>
+    <name>mall-admin-springboot</name>
     <description>Back Admin Project!</description>
 
     <parent>
