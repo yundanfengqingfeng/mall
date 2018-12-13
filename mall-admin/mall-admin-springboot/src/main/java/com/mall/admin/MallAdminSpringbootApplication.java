@@ -8,9 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 启动类
  */
 @SpringBootApplication
-public class MallAdminSoringbootApplication {
+public class MallAdminSpringbootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MallAdminSoringbootApplication.class, args);
+        SpringApplication.run(MallAdminSpringbootApplication.class, args);
     }
 }
